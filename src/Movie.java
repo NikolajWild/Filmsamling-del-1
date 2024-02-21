@@ -15,7 +15,6 @@ public class Movie {
         this.lengthInMinutes = lengthInMinutes;
         this.isInColour = isInColour;
 
-
     }
     public String getmovieName() {
         return movieName;
