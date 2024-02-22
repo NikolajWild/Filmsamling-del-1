@@ -3,16 +3,19 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        int opret = 0;
-        int afslut = 2;
-        Controller nyliste = new Controller();
+        int menuChoice = 0;
+        int SENTINEL = 4;
 
-        while (opret != afslut) {
+        Controller controller = new Controller();
+
+        while (menuChoice != SENTINEL) {
             System.out.println("Velkommen til min filmsamnling!");
             System.out.println("1: Opret film");
-            System.out.println("2: Afslut");
-            opret = input.nextInt();
-            if (opret == 1) {
+            System.out.println("2: Vis film liste");
+            System.out.println("3: Søg efter film");
+            System.out.println("4: Afslut");
+            menuChoice = input.nextInt();
+            if (menuChoice == 1) {
 
                 System.out.println("Indtast først filmens navn: ");
                 String movieName = input.next();
@@ -25,30 +28,42 @@ public class Main {
                 System.out.println("Indtast nu filmens længde i minutter: ");
                 int lengthInMinutes = input.nextInt();
                 System.out.println("Er filmen i farve?: ");
-                boolean isInColour = false;
-                if (input.next().equals("Yes")) {
-                    isInColour = true;
-                    Movie movie = new Movie(movieName, genre, director, yearMade, lengthInMinutes, isInColour);
+                boolean isInColor = false;
 
-                    System.out.println(movie.getmovieName() + " Movie er lavet");
+                String erIFarve = input.next();
+                String erIFarve1 = erIFarve.toLowerCase();
+                if (erIFarve.equals("ja")) {
+                    isInColor = true;
+                }
+                Movie movie = new Movie(movieName, genre, director, yearMade, lengthInMinutes, isInColor);
+
+                System.out.println(movie.getmovieName() + " Movie er lavet");
                     /*MovieCollection MovieCollection = new MovieCollection();
                     MovieCollection.AddMovie(movie);*/
-                    nyliste.addMovie(movieName, genre, director, yearMade, lengthInMinutes, isInColour);
+                controller.addMovie(movieName, genre, director, yearMade, lengthInMinutes, isInColor);
 
-                } else if (opret == afslut) {
-                    System.out.println("Du valgte ingen film!");
-                    break;
-                }
+            } else if (menuChoice == SENTINEL) {
+                System.out.println("Du valgte ingen film!");
 
+            } else if (menuChoice == 2){
+                System.out.println("Vis liste af film " + controller.visMovieList());
+
+            } else if (menuChoice == 3){
+                System.out.println("Søg efter en specifik film: ");
+                String searchTerm = input.next();
+                controller.searchMovieCollectionMovieCollection(searchTerm);
+                System.out.println("Filmen er i din samling");
+
+            }
        /* System.out.println("Du har nu tilføjet " + movieName + " af genren " + genre +
                 " instrueret af " + director + " fra " + yearMade + " som varer " + lengthInMinutes
         + " minutter");*/
 
-
-            }
         }
     }
-    }
+}
+
+
 
 
 

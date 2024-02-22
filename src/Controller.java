@@ -6,13 +6,14 @@ public class Controller {
     public Controller() {
         movieCollection = new MovieCollection();
     }
+    public void addMovie(String movieName, String genre, String director, int yearMade, int lengthInMinutes, boolean isInColor) {
+        movieCollection.AddMovie(movieName, genre, director, yearMade, lengthInMinutes, isInColor);
 
-
-    public void addMovie(String movieName, String genre, String director, int yearMade, int lengthInMinutes, boolean isInColour) {
-        movieCollection.AddMovie(movieName, genre, director, yearMade, lengthInMinutes, isInColour);
-
-
-
-
+    }
+    public String visMovieList(){
+        return movieCollection.toString();
+    }
+    public void searchMovieCollectionMovieCollection(String searchTerm){
+        movieCollection.searchMovie(searchTerm);
     }
 }

@@ -4,16 +4,16 @@ public class Movie {
     private String director;
     private int yearMade;
     private int lengthInMinutes;
-    private boolean isInColour;
+    private boolean isInColor;
 
     public Movie(String movieName, String director, String genre,
-                 int yearMade, int lengthInMinutes, boolean isInColour) {
+                 int yearMade, int lengthInMinutes, boolean isInColor) {
         this.movieName = movieName;
         this.genre = genre;
         this.director = director;
         this.yearMade = yearMade;
         this.lengthInMinutes = lengthInMinutes;
-        this.isInColour = isInColour;
+        this.isInColor = isInColor;
 
     }
     public String getmovieName() {
@@ -32,7 +32,12 @@ public class Movie {
         return lengthInMinutes;
     }
     public boolean getIsInColour(){
-        return isInColour;
+        return isInColor;
     }
-
+    @Override
+    public String toString(){
+        String result = "";
+        result += "\n" + movieName + "\n" + genre + "\n" + director + "\n" + yearMade + "\n" + lengthInMinutes;
+        return result;
+    }
 }
