@@ -36,15 +36,14 @@ public class MovieCollection {
 
    }
 
-    public boolean contains(String filmTitel) {
+    public String searchMovie(String search) {
         for (Movie movie : movieList) {
-            if (movie.getmovieName().contains(filmTitel)) {
-                return true;
+            if (movie.getmovieName().toLowerCase().contains(search.toLowerCase())) {
+                return "Filmen findes:"+movie;
             }
         }
-        return false;
+        return "Filmen blev ikke fundet i din filmsamling.";
     }
-
 }
 
 

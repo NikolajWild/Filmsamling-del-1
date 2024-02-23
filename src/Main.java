@@ -5,9 +5,9 @@ public class Main {
         Scanner input = new Scanner(System.in);
         int menuChoice = 0;
         int SENTINEL = 4;
-
+        //Kalder min controller så jeg kan bruge dens metoder i main metoden
         Controller controller = new Controller();
-
+        //While loop som får hele menuen til at fungere, ved at bruge en sentinel for at navigere rundt i menuen.
         while (menuChoice != SENTINEL) {
             System.out.println("Velkommen til min filmsamnling!");
             System.out.println("1: Opret film");
@@ -18,11 +18,11 @@ public class Main {
             input.nextLine();
             if (menuChoice == 1) {
                 System.out.println("Indtast først filmens navn: ");
-                String movieName = input.next();
-                System.out.println("Indtast genren på filmen du gerne vil tilføje: ");
-                String genre = input.next();
+                String movieName = input.nextLine();
                 System.out.println("Indtast nu filmens director: ");
-                String director = input.next();
+                String genre = input.nextLine();
+                System.out.println("Indtast genren på filmen du gerne vil tilføje: ");
+                String director = input.nextLine();
                 System.out.println("Indtast herefter filmens udgivelses år: ");
                 int yearMade = input.nextInt();
                 System.out.println("Indtast nu filmens længde i minutter: ");
@@ -45,14 +45,11 @@ public class Main {
                 System.out.println("\nVis liste af film " + controller.visMovieList());
 
             } else if (menuChoice == 3) {
+
                 System.out.println("Søg efter en specifik film: ");
                 System.out.println("Indtast filmens navn: ");
                 String movieName = input.nextLine();
-                if (controller.searchMovie(movieName)) {
-                    System.out.println("Filmen findes i din filmsamling." + controller.visMovieList());
-                } else {
-                    System.out.println("Filmen blev ikke fundet i din filmsamling.");
-                }
+                System.out.println(controller.searchMovie(movieName));
             } else {
                 System.out.println("\nUgyldigt valg. Prøv igen.");
             }
