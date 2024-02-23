@@ -15,8 +15,8 @@ public class Main {
             System.out.println("3: Søg efter film");
             System.out.println("4: Afslut");
             menuChoice = input.nextInt();
+            input.nextLine();
             if (menuChoice == 1) {
-
                 System.out.println("Indtast først filmens navn: ");
                 String movieName = input.next();
                 System.out.println("Indtast genren på filmen du gerne vil tilføje: ");
@@ -29,36 +29,33 @@ public class Main {
                 int lengthInMinutes = input.nextInt();
                 System.out.println("Er filmen i farve?: ");
                 boolean isInColor = false;
-
                 String erIFarve = input.next();
                 String erIFarve1 = erIFarve.toLowerCase();
                 if (erIFarve.equals("ja")) {
                     isInColor = true;
                 }
                 Movie movie = new Movie(movieName, genre, director, yearMade, lengthInMinutes, isInColor);
-
-                System.out.println(movie.getmovieName() + " Movie er lavet");
-                    /*MovieCollection MovieCollection = new MovieCollection();
-                    MovieCollection.AddMovie(movie);*/
                 controller.addMovie(movieName, genre, director, yearMade, lengthInMinutes, isInColor);
+                System.out.println(movie.getmovieName() + " \nFilmen er nu tilføjet!");
 
             } else if (menuChoice == SENTINEL) {
-                System.out.println("Du valgte ingen film!");
+                System.out.println("\nDu valgte ingen film!");
 
             } else if (menuChoice == 2){
-                System.out.println("Vis liste af film " + controller.visMovieList());
+                System.out.println("\nVis liste af film " + controller.visMovieList());
 
-            } else if (menuChoice == 3){
+            } else if (menuChoice == 3) {
                 System.out.println("Søg efter en specifik film: ");
-                String searchTerm = input.next();
-                controller.searchMovieCollectionMovieCollection(searchTerm);
-                System.out.println("Filmen er i din samling");
-
+                System.out.println("Indtast filmens navn: ");
+                String movieName = input.nextLine();
+                if (controller.searchMovie(movieName)) {
+                    System.out.println("Filmen findes i din filmsamling." + controller.visMovieList());
+                } else {
+                    System.out.println("Filmen blev ikke fundet i din filmsamling.");
+                }
+            } else {
+                System.out.println("\nUgyldigt valg. Prøv igen.");
             }
-       /* System.out.println("Du har nu tilføjet " + movieName + " af genren " + genre +
-                " instrueret af " + director + " fra " + yearMade + " som varer " + lengthInMinutes
-        + " minutter");*/
-
         }
     }
 }

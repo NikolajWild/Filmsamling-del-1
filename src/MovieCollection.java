@@ -28,22 +28,26 @@ public class MovieCollection {
     }
    @Override
    public String toString(){
-        String result = "";
-        for (Movie movie:movieList){
-            result += movie.toString();
+        String allFilms = "";
+        for (Movie m:movieList){
+            allFilms += m.toString()+"\n";
         }
-        return result;
+        return allFilms;
 
    }
 
-    public void searchMovie(String searchTerms){
-        for (int i = 0; i<movieList.size();i++){
-            if(searchTerms.equals(movieList.get(i).getmovieName())){
-                System.out.println(movieList.get(i).getmovieName());
+    public boolean contains(String filmTitel) {
+        for (Movie movie : movieList) {
+            if (movie.getmovieName().contains(filmTitel)) {
+                return true;
             }
         }
+        return false;
     }
 
 }
+
+
+
 
 

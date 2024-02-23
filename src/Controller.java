@@ -13,7 +13,8 @@ public class Controller {
     public String visMovieList(){
         return movieCollection.toString();
     }
-    public void searchMovieCollectionMovieCollection(String searchTerm){
-        movieCollection.searchMovie(searchTerm);
+    public boolean searchMovie(String title) {
+        return movieCollection.contains(title);
     }
-}
+
+    }

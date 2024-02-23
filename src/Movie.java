@@ -37,7 +37,13 @@ public class Movie {
     @Override
     public String toString(){
         String result = "";
-        result += "\n" + movieName + "\n" + genre + "\n" + director + "\n" + yearMade + "\n" + lengthInMinutes;
+        result += "\n" + movieName + "\n" + genre + "\n" + director + "\n" + yearMade +
+                "\n" + lengthInMinutes + "\n er filmen i farve? " + isInColor;
+        if(isInColor) {
+            result += "ja";
+        } else {
+            result +="nej";
+        }
         return result;
     }
 }
