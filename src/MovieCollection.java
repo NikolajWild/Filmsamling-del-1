@@ -47,9 +47,19 @@ public class MovieCollection {
         return "Filmen blev ikke fundet i din filmsamling.";
     }
 }*/
+    public ArrayList<Movie> searchMovie(String search) {
+        ArrayList<Movie> liste = new ArrayList<Movie>();
+        for (Movie movie : movieList) {
+            if (movie.getmovieName().toLowerCase().contains((search.toLowerCase()))) {
+                liste.add(movie);
+            }
+        }
 
+        return liste;
+
+    }
     //Søger efter alle film der indeholder et passende input.
-    public String searchMovie(String search) {
+   /* public String searchMovie(String search) {
         String filmSearchMatches = "";
         for (Movie movie : movieList) {
             if (movie.getmovieName().toLowerCase().contains((search.toLowerCase()))) {
@@ -60,9 +70,11 @@ public class MovieCollection {
             return "\nDer var ikke et match;";
         }
         return filmSearchMatches;
-    }
-    /*public String editMovie(String edit){
-
+    }*/
+    /*public void editMovie(String edit){
+    searchMovie();
+    Spørg brugeren hvilket nummer i arraylisten brugeren ønsker at ændre
+    Kalder herefter arraylisten fra search
     }*/
 }
 

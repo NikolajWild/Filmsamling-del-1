@@ -34,6 +34,7 @@ public class Movie {
     public boolean getIsInColour(){
         return isInColor;
     }
+
     @Override
     public String toString(){
         String result = "";

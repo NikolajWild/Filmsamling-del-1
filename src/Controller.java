@@ -13,7 +13,7 @@ public class Controller {
     public String visMovieList(){
         return movieCollection.toString();
     }
-    public String searchMovie(String search) {
+    public ArrayList<Movie> searchMovie(String search) {
         return movieCollection.searchMovie(search);
     }
 

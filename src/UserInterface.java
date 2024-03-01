@@ -1,10 +1,11 @@
+import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserInterface {
     Scanner input = new Scanner(System.in);
     //Kalder min controller så jeg kan bruge dens metoder i main metoden
     Controller controller = new Controller();
-
     public void startProgram() {
         int menuChoice = 0;
         int SENTINEL = 4;
@@ -17,19 +18,25 @@ public class UserInterface {
             System.out.println("2: Vis film liste");
             System.out.println("3: Søg efter film");
             System.out.println("4: Afslut");
-            menuChoice = input.nextInt();
-            input.nextLine();
-            if (menuChoice == 1) {
-                tilføjFilm();
-            } else if (menuChoice == SENTINEL) {
-                afslutProgram();
-            } else if (menuChoice == 2) {
-                visFilmListe();
-            } else if (menuChoice == 3) {
-                søgEfterFilm();
-            } else {
-                System.out.println("\nUgyldigt valg. Prøv igen.");
-            }
+            try {
+                menuChoice = input.nextInt();
+                input.nextLine();
+
+                if (menuChoice == 1) {
+                    tilføjFilm();
+                } else if (menuChoice == SENTINEL) {
+                    afslutProgram();
+                } else if (menuChoice == 2) {
+                    visFilmListe();
+                } else if (menuChoice == 3) {
+                    søgEfterFilm();
+                } else {
+                    System.out.println("\nUgyldigt valg. Prøv igen.");
+                }
+            }catch (InputMismatchException e){
+                    System.out.println("\nUgyldigt input. Indtast venligst et tal der fremgår i menuen.");
+                    input.nextLine(); // Clear the invalid input from the scanner
+                }
         }
     }
     public void tilføjFilm() {
@@ -60,10 +67,18 @@ public class UserInterface {
     public void visFilmListe() {
         System.out.println("\nVis liste af film " + controller.visMovieList());
     }
-    public void søgEfterFilm() {
+    public ArrayList<Movie> søgEfterFilm() {
         System.out.println("Søg efter en specifik film: ");
         System.out.println("Indtast filmens navn: ");
         String movieName = input.nextLine();
-        System.out.println(controller.searchMovie(movieName));
+        //System.out.println(controller.searchMovie(movieName));
+        ArrayList<Movie> searchResults = controller.searchMovie(movieName);
+        for (int i =1; i<=searchResults.size();i++) {
+            System.out.println(i + ". " + searchResults.get(i-1).toString());
+        }
+        return searchResults;
     }
+    /*public void redigerFilm(){
+        ArrayList<Movie> redigerFilm = søgEfterFilm();
+    }*/
 }
